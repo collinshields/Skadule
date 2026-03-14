@@ -18,8 +18,5 @@
     <ClInclude Include="Skadule.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LinkedList.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 /***
 * \brief	Represents an agent with a name designated availability.
@@ -14,9 +15,7 @@ struct ScheduleAgent {
 
 	ScheduleAgent(std::string name) : name(name) {}
 
-	bool operator==(const ScheduleAgent& other) const {
-		return name == other.name;
-	}
+	bool operator==(const ScheduleAgent& other) const;
 };
 
 /***
@@ -88,6 +87,11 @@ public:
 	*			Seperated from returning so that the optimized agents can be accessed without needing to generate a new schedule each time.
 	***/
 	void optimize_agents();
+
+	/***
+	* \brief	Returns the number of agents currently in the schedule pool.
+	***/
+	int num_agents() const;
 };
 
 // IMPLEMENTATION OF SCHEDULEAGENT METHODS
@@ -107,6 +111,10 @@ ScheduleAgent* Skadule::get_agent(std::string &name) {
 		}
 	}
 	return nullptr;
+}
+
+int Skadule::num_agents() const {
+	return agents.size();
 }
 
 std::vector<ScheduleAgent> Skadule::get_optimized_agents() const {
@@ -154,6 +162,7 @@ void Skadule::optimize_agents() {
 	}
 
 	// Optimize	
+	
 
 	// Extract optimized agents from trackers and store in optimized_agents vector
 	for (const AgentTracker& tracker : agent_trackers) {

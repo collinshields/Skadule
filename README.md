@@ -1,1 +1,1 @@
-A library for automatically creating schedules given a set of agents with availabiliies
+A library for automatically creating schedules given a set of agents with availabilities

@@ -27,7 +27,7 @@ struct ScheduleAgent {
 * \brief	Manages a schedule of agents, allowing for adding agents and retrieving their desired schedules.
 *			Optimal schedule is determined by certain criteria:
 * 				1. Total scheduled time for each agent should be 40 hours or less.
-* 				2. Each agent should have at least 10 hours of rest between shifts.
+* 				2. Each agent should have at least 10 hours of rest between shifts (across days).
 *				3. The schedule should be balanced, ensuring that no agent is overburdened with consecutive shifts.
 *				4. Ideally, at least two agents should be scheduled at the same time to ensure coverage. This is a high priority for weekends.
 *				5. More than two agents should not be scheduled at the same time to avoid overcrowding. This is a high priority for weekdays.

@@ -32,7 +32,7 @@ TEST(SkaduleTest, RemoveAgent) {
 	EXPECT_TRUE(skadule.get_agent(name) == nullptr);
 }
 
-TEST(SkaduleTest, OptimizeAgents) {
+TEST(SkaduleTest, SimpleOptimizeAgents) {
 	ScheduleAgent agent1("Alice");
 	agent1.availability[0][0] = 9; // Monday morning
 	agent1.availability[0][1] = 17; // Monday evening
@@ -53,4 +53,29 @@ TEST(SkaduleTest, OptimizeAgents) {
 
 	EXPECT_TRUE(optimized_agents[0].availability[0][0] == 9);
 	EXPECT_TRUE(optimized_agents[1].availability[0][1] == 21);
+}
+TEST(SkaduleTest, BigOptimizeAgents) {
+	ScheduleAgent agent1("Alice");
+	agent1.availability[0][0] = 9;
+	agent1.availability[0][1] = 17;
+	agent1.availability[1][0] = 10;
+	agent1.availability[1][1] = 21;
+	ScheduleAgent agent2("Jim");
+	agent2.availability[0][0] = 13;
+	agent2.availability[0][1] = 21;
+	agent2.availability[1][0] = 13;
+	agent2.availability[1][1] = 21;
+	ScheduleAgent agent3("Bob");
+	agent3.availability[0][0] = 8;
+	agent3.availability[0][1] = 12;
+	agent3.availability[1][0] = 8;
+	agent3.availability[1][1] = 12;
+	Skadule skadule;
+	skadule.add_agent(agent1);
+	skadule.add_agent(agent2);
+	skadule.add_agent(agent3);
+	skadule.optimize_agents();
+	std::vector<ScheduleAgent> optimized_agents = skadule.get_optimized_agents();
+	skadule.print_schedule();
+	EXPECT_TRUE(optimized_agents.size() == 3);
 }

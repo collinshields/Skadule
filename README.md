@@ -12,18 +12,18 @@ the total hours they are scheduled for already, the total hours they are availab
 
 ### A thought expirement
 John\
-    - Total available hours remaining: 37
-    - Total hours scheduled so far: 10
-    - Ideal hours: ~30
+- Total available hours remaining: 37
+- Total hours scheduled so far: 10
+- Ideal hours: ~30
 
 Maybe it would be possible to use a ratio system to determine how important it is that john is scheduled for more hours?\
 (30-10)/37 = 2.86
 
 Compare with another agent vying for the same segment of time\
 Billy
-    - Total available hours remaining: 20
-    - Total hours scheduled so far: 15
-    - Ideal hours: ~20
+- Total available hours remaining: 20
+- Total hours scheduled so far: 15
+- Ideal hours: ~20  
 (20-15)/20 = 0.25)
 
 Billy is much closer to fulfilling their ideal hours worked, so john would be prioritized.

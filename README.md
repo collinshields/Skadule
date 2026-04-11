@@ -11,15 +11,15 @@ For any given segment of time, it should be possible to rank agents through some
 the total hours they are scheduled for already, the total hours they are available, their ideal hours worked.
 
 ### A thought expirement
-John
+John\
     - Total available hours remaining: 37
     - Total hours scheduled so far: 10
     - Ideal hours: ~30
 
-Maybe it would be possible to use a ratio system to determine how important it is that john is scheduled for more hours?
+Maybe it would be possible to use a ratio system to determine how important it is that john is scheduled for more hours?\
 (30-10)/37 = 2.86
 
-Compare with another agent vying for the same segment of time
+Compare with another agent vying for the same segment of time\
 Billy
     - Total available hours remaining: 20
     - Total hours scheduled so far: 15

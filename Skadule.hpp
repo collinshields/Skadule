@@ -12,11 +12,51 @@
 struct ScheduleAgent {
 	std::string name; // The name of the agent
 	short availability[7][2]; // The shifts the agent is available for each day of the week [day of week][start time, end time]
+	short ideal_hours;
+	short total_hours; // Maybe it makes more sense to just store this here?
+	short wage;
 
-	ScheduleAgent(std::string name) : name(name) {
-		for (int day = 0; day < 7; ++day) {
-			availability[day][0] = 0;
-			availability[day][1] = 0; 
+	ScheduleAgent(std::string name) {
+		this->name = name;
+		this->ideal_hours = 40; // Default ideal hours per week
+		this->total_hours = 0;
+		this->wage = -1; // Implies wage is not set. If found when optimizing and wage ratios are being factored, needs to exit with error.
+		for (int i = 0; i < 7; ++i) {
+			availability[i][0] = -1; // -1 indicates no availability
+			availability[i][1] = -1;
+		}
+	}
+
+	ScheduleAgent(std::string name, short wage) {
+		this->name = name;
+		this->ideal_hours = 40; // Default ideal hours per week
+		this->total_hours = 0;
+		this->wage = wage;
+		for (int i = 0; i < 7; ++i) {
+			availability[i][0] = -1; // -1 indicates no availability
+			availability[i][1] = -1;
+		}
+	}
+
+	ScheduleAgent(std::string name, short wage, short ideal_hours) {
+		this->name = name;
+		this->ideal_hours = ideal_hours;
+		this->total_hours = 0;
+		this->wage = wage;
+		for (int i = 0; i < 7; ++i) {
+			availability[i][0] = -1; // -1 indicates no availability
+			availability[i][1] = -1;
+		}
+	}
+
+	ScheduleAgent(std::string name, short wage, short ideal_hours, short availability[7][2]) {
+		this->name = name;
+		this->ideal_hours = ideal_hours;
+		this->total_hours = 0;
+		this->wage = wage;
+		for (int i = 0; i < 7; ++i) {
+			this->availability[i][0] = availability[i][0];
+			this->availability[i][1] = availability[i][1];
 		}
 	}
 
@@ -25,7 +65,7 @@ struct ScheduleAgent {
 
 /***
 * \brief	Manages a schedule of agents, allowing for adding agents and retrieving their desired schedules.
-*			Optimal schedule is determined by certain criteria:
+*			Optimal schedule is determined by certain criteria (***NEEDS UPDATE***):
 * 				1. Total scheduled time for each agent should be 40 hours or less.
 * 				2. Each agent should have at least 10 hours of rest between shifts (across days).
 *				3. The schedule should be balanced, ensuring that no agent is overburdened with consecutive shifts.
@@ -44,11 +84,23 @@ public:
 		ScheduleAgent* assigned_agent; // Pointer to the agent assigned to this shift (nullptr if unassigned)
 	};
 
+	/***
+	*  \brief	Helper struct to track agent assignments and hours during optimization.
+	***/
 	struct AgentTracker {
 		ScheduleAgent* agent; // Pointer to the agent being tracked
 		int total_hours; // Total hours assigned to the agent for the week
 		std::vector<Shift> assigned_shifts; // List of shifts assigned to the agent
 	};
+
+	/***
+	*  \brief	Represents the ideal wage ratio for optimizing schedules based on agent wages. Needs to be set with previous sales data.
+	***/
+	float ideal_wage_ratio;
+	/***
+	*  \brief	Represents the previous sales data for each day of the week, used to optimize schedules based on expected demand. Needs to be set with wage ratio.
+	***/
+	int previous_sales[7];
 
 // PROTECTED MEMBERS
 protected:
@@ -99,6 +151,13 @@ public:
 	*			Seperated from returning so that the optimized agents can be accessed without needing to generate a new schedule each time.
 	***/
 	void optimize_agents();
+
+	/***
+	* \brief	New implementation of optimize_agents. Replace this if new implementation is successful and better.
+	* \details	The optimized agents are stored seperately from the original agents to allow for changing availability.
+	*			Seperated from returning so that the optimized agents can be accessed without needing to generate a new schedule each time.
+	***/
+	void optimize();
 
 	/***
 	* \brief	Returns the number of agents currently in the schedule pool.
@@ -174,6 +233,21 @@ void Skadule::print_schedule() const {
 	}
 }
 
+void Skadule::optimize() {
+	/***
+	* Step 1: Collect all the time boundaries from agent availability
+	***/
+
+	/***
+	* Step 2: Identify ideal shift segments based on time boundaries and some criteria
+	*	- Shifts should be between 5 and 8 hours long, ideally around 6 hours
+	*	- Shifts CANNOT be shorter than 4 hours
+	***/
+
+	/***
+	* Step 3: Assign agents to shifts based on priority system
+	***/
+}
 void Skadule::optimize_agents() {
 	if (agents.empty()) {
 		std::cout << "No agents to optimize.\n";

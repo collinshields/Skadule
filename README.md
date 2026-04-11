@@ -11,7 +11,7 @@ For any given segment of time, it should be possible to rank agents through some
 the total hours they are scheduled for already, the total hours they are available, their ideal hours worked.
 
 ### A thought expirement
-John\
+John
 - Total available hours remaining: 37
 - Total hours scheduled so far: 10
 - Ideal hours: ~30

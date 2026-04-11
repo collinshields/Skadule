@@ -23,7 +23,8 @@ Compare with another agent vying for the same segment of time\
 Billy
 - Total available hours remaining: 20
 - Total hours scheduled so far: 15
-- Ideal hours: ~20  
+- Ideal hours: ~20
+
 (20-15)/20 = 0.25)
 
 Billy is much closer to fulfilling their ideal hours worked, so john would be prioritized.
@@ -38,14 +39,17 @@ compared to another agent, the one with fewer hours is prioritized over the one 
 
 This threshold would need to be tweaked, but let's look at another example:
 John
-    - Total available hours remaining: 80
-    - Total hours scheduled so far: 10
-    - Ideal hours: ~30
+- Total available hours remaining: 80
+- Total hours scheduled so far: 10
+- Ideal hours: ~30
+
 (30-10)/80 = 0.25
+
 Billy
-    - Total available hours remaining: 20
-    - Total hours scheduled so far: 20
-    - Ideal hours: ~30
+- Total available hours remaining: 20
+- Total hours scheduled so far: 20
+- Ideal hours: ~30
+
 (30-20)/20 = 0.5
 
 Billy would normally get priority, but John has much fewer hours so far, so a threshold of 5-10 hours could help john get the hours.

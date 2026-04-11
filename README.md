@@ -26,7 +26,32 @@ Billy
     - Ideal hours: ~20
 (20-15)/20 = 0.25)
 
-Billy is much closer to fulfilling their ideal hours worked, so they would be chosen over john.
+Billy is much closer to fulfilling their ideal hours worked, so john would be prioritized.
+
+BUT, this has a problem. If one agent has a lot of available hours they will never be chosen over an agent with fewer available hours. With multiple other agents
+this could mean not getting scheduled at all. It's important to consider if an agent needs to slot to get close to their ideal hours, but balancing hours fairly
+should be prioritized.
+
+### Another avenue
+Maybe a thresholding system can be used in conjunction with the ratios. If one agent is already scheduled for more than a certain threshold difference of hours
+compared to another agent, the one with fewer hours is prioritized over the one that "needs" the hours more.
+
+This threshold would need to be tweaked, but let's look at another example:
+John
+    - Total available hours remaining: 80
+    - Total hours scheduled so far: 10
+    - Ideal hours: ~30
+(30-10)/80 = 0.25
+Billy
+    - Total available hours remaining: 20
+    - Total hours scheduled so far: 20
+    - Ideal hours: ~30
+(30-20)/20 = 0.5
+
+Billy would normally get priority, but John has much fewer hours so far, so a threshold of 5-10 hours could help john get the hours.
+This issue would be more significant when available hours are more limited, so it might be best to have something like this only activate when both agents 
+have a low amount of availble hours remaining. Just always prioritizing balance MIGHT be better though. Maybe there is an in-between ideal somewhere.
+
 
 ### Some other factors to consider
 - Wage ratio = total wages in a day / total profit in a day. Wage ratio should be below a certain threshold (provided by user? Also need to provide predicted profits)
